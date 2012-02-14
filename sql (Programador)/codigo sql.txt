@@ -1,0 +1,25 @@
+create view vw_rejilla_citas as
+SELECT citas.id, fecha as Fecha, hora as Hora, comentarios as Comentarios, concat(medicos.apellidos,', ',medicos.nombre) AS Medico,
+ 	concat(pacientes.apellidos,', ',pacientes.nombre) AS Paciente,visitado as Visitado
+	FROM citas
+      JOIN pacientes ON citas.id_paciente = pacientes.id
+      JOIN medicos ON citas.id_medico = medicos.id
+      order by fecha, hora, Medico,Paciente
+
+------------------------------------------------------------------------------------------------
+
+create view vw_rejilla_visitas as
+SELECT visitas.id,concat(medicos.apellidos,', ',medicos.nombre) AS Medico, concat(pacientes.apellidos,', ',pacientes.nombre) AS Paciente,
+	fecha as Fecha, tarifa_consulta as `Tarifa de consulta`, tarifa_diabetes as `Tarifa de diabetes`, tarifa_medicamentos as `Tarifa de medicamentos`,
+	diagnostico as Diagnostico, medicamentos as Medicamentos
+	FROM visitas
+      JOIN pacientes ON visitas.id_paciente = pacientes.id
+      JOIN medicos ON visitas.id_medico = medicos.id
+      order by fecha, Medico,Paciente
+
+------------------------------------------------------------------------------------------------
+
+create view vw_citas_medico as select id_medico, fecha, count(*)as visitas FROM citas
+
+------------------------------------------------------------------------------------------------
+
