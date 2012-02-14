@@ -1,0 +1,34 @@
+/* CSS Document*/
+body {color:#FFFFFF; background-color:silver; font-family: helvetica,Arial,sans-serif; font-size: 12px; text-align: justify;}
+    /*Cabecera de Pagina*/
+    #contenedor1 {background-color:#FFFFFF;}
+    
+    #contenedor2 {background-color:grey; font-size: 12px; text-align: justify;}
+        /* Menu (columna izquierda)*/ 
+        #menu {height:525px; background-color:#F00202; font-size:14px;}
+            ul{}
+                li {list-style:none; border:1px solid white; text-align: center; background-color:#010245;
+                    border-radius: 50px; margin-right: 25px;}   
+                    li a {text-decoration: none; color:#FFFFFF;}
+                        li a:hover { font-weight:bold;}
+        /* Cuerpo*/
+        #cuerpo {color:black; font-weight: bold;}        
+            /* Rejilla*/            
+            h3 {text-align: center; font-family:fantasy; font-size: 18px; color:black; text-decoration: underline;}
+            table{margin: auto; width: 90%; border:1px black solid; background-color:#FFFFFF; color:black;}
+                #detalle {border-collapse:collapse; border:1px black;}
+                tr:nth-child(2n+1){background-color:#F00202; color:black;}        
+                    th {font-size: 14px; font-weight:bold; color:#FFFFFF; background-color:#010245;}
+                    a {text-align: center; font-family:fantasy; color:black;}
+                    a:hover { font-weight:bold;}            
+                    .visitado {background-color:#010245; color:#FFFFFF;}                    
+        /* Cuadros de texto y desplegables */ 
+        form {text-align: center;}
+            input,select{background-color:#010245; color:#FFFFFF;}
+            /* Botones */    
+            .boton {background-color:silver; font-family:fantasy; font-weight:bold; color:#F00202; border-radius:50px;
+            border:solid black;}
+
+    /* Pie de Pagina */
+    #contenedor3 {height: 75px; text-align:center; background-color:#010245;}
+        #pie h1 {font-size:24px; color:#FFFFFF; font-weight:bold;}        

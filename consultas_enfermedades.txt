@@ -1,0 +1,111 @@
+create view vw_edad_paciente_visita as 
+SELECT pacientes.id AS id_paciente,
+       sexo,
+       (FLOOR(DATEDIFF(visitas.fecha, pacientes.fecha_nacimiento)/365)) AS edad, 
+       visitas.id AS id_visita,
+       visitas.fecha as fecha_visita
+FROM pacientes
+JOIN visitas 
+ON pacientes.id = visitas.id_paciente;
+
+
+create view vw_edad_paciente_visita_id_enfermedad as
+select  vw_1.sexo, 
+	vw_1.edad, 
+	vw_1.fecha_visita,
+        visita_enfermedad.id_enfermedad
+FROM vw_edad_paciente_visita vw_1
+JOIN visita_enfermedad
+ON vw_1.id_visita = visita_enfermedad.id_visita;
+
+
+create view vw_edad_paciente_visita_enfermedad as
+select  vw_2.sexo as Sexo, 
+        vw_2.edad as Edad,
+        vw_2.fecha_visita as `Fecha Visita`, 
+	t_enfermedades.enfermedad as Enfermedad
+FROM vw_edad_paciente_visita_id_enfermedad vw_2
+JOIN t_enfermedades
+ON vw_2.id_enfermedad = t_enfermedades.id;
+
+
+create view vw_edad_paciente_num_mes_visita_enfermedad as
+select  Enfermedad,
+        year(`Fecha Visita`) as Anno,        
+        month(`Fecha Visita`) as Num_Mes,
+        Sexo,
+        sum(if(edad<=1, 1, 0)) as 0_1, 
+        sum(if(edad>1 and edad<=4, 1, 0)) as 2_4,
+        sum(if(edad>4 and edad<=14, 1, 0)) as 5_14,
+        sum(if(edad>14, 1, 0)) as Resto
+from vw_edad_paciente_visita_enfermedad
+group by Enfermedad, Sexo, Anno, Num_Mes
+order by Anno, Num_Mes, Enfermedad, Sexo;
+
+
+create view vw_edad_paciente_nom_mes_visita_enfermedad as
+select Enfermedad,
+        Anno as `Año`,
+        Num_Mes,
+        t_meses.nom_mes as Mes,
+        Sexo,
+        0_1 as 0a1,
+        2_4 as 2a4,
+        5_14 as 5a14,
+        Resto
+FROM vw_edad_paciente_num_mes_visita_enfermedad
+JOIN t_meses
+ON vw_edad_paciente_num_mes_visita_enfermedad.Num_Mes = t_meses.id;
+
+
+create view vw_total_consultas_por_enfermedad_y_edad as
+select Enfermedad,
+        `Año`, Num_Mes, Mes, Sexo,
+        sum(0a1) as 0a1,
+        sum(2a4) as 2a4,
+        sum(5a14) as 5a14,
+        sum(Resto) as Resto,
+        sum(0a1)+sum(2a4)+sum(5a14)+sum(Resto) as Total
+FROM vw_edad_paciente_nom_mes_visita_enfermedad
+group by Enfermedad
+ORDER BY `Año`,Num_Mes,Enfermedad,Sexo;
+
+
+create view vw_porc_total_consultas_por_enfermedad_y_edad as
+select  Enfermedad,
+        `Año`,Num_Mes, Mes, Sexo,
+        (0a1*100)/Total as `%0a1`,
+        (2a4*100)/Total as `%2a4`,
+        (5a14*100)/Total as `%5a14`,
+        (Resto*100)/Total as `%Resto`
+FROM vw_total_consultas_por_enfermedad_y_edad
+group by Enfermedad
+ORDER BY `Año`,Num_Mes,Enfermedad,Sexo;
+
+
+create view vw_total_consultas_por_edad as
+select  `Año`, Num_Mes, Mes, Sexo,
+        sum(0a1) as 0a1,
+        sum(2a4) as 2a4,
+        sum(5a14) as 5a14,
+        sum(Resto) as Resto,
+        sum(0a1)+sum(2a4)+sum(5a14)+sum(Resto) as Total
+FROM vw_edad_paciente_nom_mes_visita_enfermedad
+ORDER BY `Año`,Num_Mes,Sexo;
+
+
+create view vw_porc_total_consultas_por_edad as
+select  `Año`,Num_Mes, Mes, Sexo,
+        (0a1*100)/Total as `%0a1`,
+        (2a4*100)/Total as `%2a4`,
+        (5a14*100)/Total as `%5a14`,
+        (Resto*100)/Total as `%Resto`
+FROM vw_total_consultas_por_edad
+ORDER BY `Año`,Num_Mes,Sexo;
+
+
+create view vw_lista_annos as
+select distinct Anno as `Año`    
+FROM vw_edad_paciente_num_mes_visita_enfermedad
+where Anno is not null and Anno <>'0'
+order by Anno desc;

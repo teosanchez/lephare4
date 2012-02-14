@@ -1,0 +1,60 @@
+create view vw_edad_paciente_visita as 
+SELECT pacientes.id AS paciente,
+       sexo,
+       (FLOOR(DATEDIFF(visitas.fecha, pacientes.fecha_nacimiento)/365)) AS edad, 
+       visitas.id AS visita,
+       visitas.fecha as fecha
+FROM pacientes
+JOIN visitas ON pacientes.id = visitas.id_paciente
+
+
+
+create view vw_edad_paciente_visita_id_enfermedad as
+select  vw_edad_paciente_visita.sexo, 
+		vw_edad_paciente_visita.edad, 
+		vw_edad_paciente_visita.fecha,
+        visita_enfermedad.id_enfermedad
+FROM vw_edad_paciente_visita
+JOIN visita_enfermedad
+ON vw_edad_paciente_visita.visita = visita_enfermedad.id_visita
+
+
+
+create view vw_edad_paciente_visita_enfermedad as
+select  vw_edad_paciente_visita_id_enfermedad.sexo as `Sexo´, 
+        vw_edad_paciente_visita_id_enfermedad.edad as `Edad`,
+        vw_edad_paciente_visita_id_enfermedad.fecha as `Fecha Visita`, 
+	t_enfermedades.enfermedad as `Enfermedad`
+FROM vw_edad_paciente_visita_id_enfermedad
+JOIN t_enfermedades
+ON vw_edad_paciente_visita_id_enfermedad.id_enfermedad = t_enfermedades.id
+
+
+
+create view vw_edad_paciente_num_mes_visita_enfermedad as
+select  Enfermedad,
+        year(`Fecha Visita`) as Anno,        
+        month(`Fecha Visita`) as Mes,
+        Sexo,
+        sum(if(edad<=1, 1, 0)) as 0_1, 
+        sum(if(edad>1 and edad<=4, 1, 0)) as 2_4,
+        sum(if(edad>4 and edad<=14, 1, 0)) as 5_14,
+        sum(if(edad>14, 1, 0)) as Resto
+from vw_edad_paciente_visita_enfermedad
+group by enfermedad, sexo, Anno, Mes
+order by Anno, Mes, Enfermedad, Sexo
+
+
+
+create view vw_edad_paciente_nom_mes_visita_enfermedad as
+select Enfermedad,
+        Anno as `Año`,
+        t_meses.nom_mes as `Mes`,
+        Sexo,
+        0_1 as `0a1`,
+        2_4 as `2a4`,
+        5_14 as `5a14`,
+        Resto
+FROM vw_edad_paciente_num_mes_visita_enfermedad
+JOIN t_meses
+ON vw_edad_paciente_num_mes_visita_enfermedad.Mes = t_meses.cod_mes

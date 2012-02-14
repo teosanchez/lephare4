@@ -1,0 +1,15 @@
+root {display: block;}
+body{background-color:#FFFFFF; color:black; font-family: verdana; font-size: 12px;}
+#carnet{width: 378px; height: 302px; border:1px black solid; margin: auto;}
+    #cabecera{text-align: center;}
+    #cuerpo{margin-top:20px; margin-left: 10px;}
+        .espaciado{margin-bottom: 30px;}        
+    #foto{float:right; width: 100px; height: 120px; margin-right: 20px;  text-align: center; border:1px black solid;}
+        #texto_foto{margin-top:40px;}
+    span{font-weight: bold;}
+    /* Formulario*/ 
+    form {text-align: center;}
+        input,select{background-color:#010245; color:#FFFFFF;}
+        /* Botones */    
+        .boton {background-color:silver; font-family:fantasy; font-weight:bold; color:#F00202; border-radius:50px;
+        border:solid black;}
