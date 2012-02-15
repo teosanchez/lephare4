@@ -6,6 +6,12 @@
 
 -- modificado a ver si va github
 **********
+
+A ver que tal funciona
+
+
+
+
 -----------------------------------------
 
 create view vw_edad_paciente_visita as 
