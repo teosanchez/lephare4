@@ -1,4 +1,6 @@
 -- modificado a ver si va github
+
+
 create view vw_edad_paciente_visita as 
 SELECT pacientes.id AS paciente,
        sexo,
