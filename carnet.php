@@ -1,4 +1,5 @@
 <?php 
+
 include_once ('clase_bd.php') ;
 $bd=new bd();
 $id=$_GET['id'];
