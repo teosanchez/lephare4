@@ -8,7 +8,8 @@ $edad=$bd->consultar("SELECT floor (DATEDIFF(now(),`fecha_nacimiento`)/365) as E
 if($consulta)
     {
     $fila=mysql_fetch_array($consulta); 
-    }
+    }    
+   
 else
     {
     echo "El registro no existe!!!!";
