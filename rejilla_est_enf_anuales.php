@@ -5,18 +5,6 @@ include_once ("clase_bd.php");
 include ("clase_annos.php");
 include ("clase_meses.php");
 
-
-
-
-
-
-
-
-
-
-
-
-
 $bd=new bd();
 $util=new utilidadesIU();
 $annos=new annos();
