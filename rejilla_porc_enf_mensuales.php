@@ -76,7 +76,7 @@ echo '<h2>'.$mes." ".$anno.'</h2>';
 if($result)
 {
     $rejilla=new rejilla_est_enfermedades($result);
-    echo $rejilla->pintar();
+    echo $rejilla->pintar2();
 
     if ($result2<>"")       /* Incluir  en generador este if */
     {
@@ -93,7 +93,7 @@ if($result)
     //var_dump($result_total_edad);
     echo '<h2>Porcentajes mensuales de enfermedades, clasificados por edad</h2>';
     $rejilla_total_edad=new rejilla_est_enfermedades($result_total_edad);
-    echo $rejilla_total_edad->pintar();
+    echo $rejilla_total_edad->pintar2();
 }
 else	/* Incluir en generador este else */
 {

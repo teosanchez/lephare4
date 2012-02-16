@@ -30,12 +30,12 @@ $result2="";    /* Incluir en generador el cñlculo de $result2 */
 if(isset ($_GET["cadena"]) && $_GET["cadena"]<>"") //Evalua si existe esta variable y si viene con algun contenido, la cual procede del cuadro de texto que esta junto al boton Buscar de uno de los formularios
 {
     $cadena=$_GET["cadena"];
-    $result=$bd->consultarArray("SELECT Mes,Enfermedad,Sexo,`%0a1`,`%2a4`,`%5a14`,`%Resto`
+    $result=$bd->consultarArray("SELECT Enfermedad,Sexo,`%0a1`,`%2a4`,`%5a14`,`%Resto`
                 from vw_porc_total_consultas_por_enfermedad_y_edad
                 where Enfermedad like '%".$cadena."%'
                 or Mes like '%".$cadena."%'
                 and `Año`='".$anno."'");
-    $result2=$bd->consultar("SELECT Mes,Enfermedad,Sexo,`%0a1`,`%2a4`,`%5a14`,`%Resto`
+    $result2=$bd->consultar("SELECT Enfermedad,Sexo,`%0a1`,`%2a4`,`%5a14`,`%Resto`
                 from vw_porc_total_consultas_por_enfermedad_y_edad
                 where Enfermedad like '%".$cadena."%'
                 or Mes like '%".$cadena."%'
@@ -45,7 +45,7 @@ else
 {
     if(!isset ($_GET["cadena"]))
     {       
-        $result=$bd->consultarArray("SELECT Mes,Enfermedad,Sexo,`%0a1`,`%2a4`,`%5a14`,`%Resto`  
+        $result=$bd->consultarArray("SELECT Enfermedad,Sexo,`%0a1`,`%2a4`,`%5a14`,`%Resto`  
                 FROM vw_porc_total_consultas_por_enfermedad_y_edad
                 WHERE `Año`='".$anno."'");
         $result_total_edad=$bd->consultarArray("SELECT `%0a1`,`%2a4`,`%5a14`,`%Resto` 
@@ -62,7 +62,7 @@ echo '<h2>'."AÑO ".$anno.'</h2>';
 if($result)
 {
     $rejilla=new rejilla_est_enfermedades($result);
-    echo $rejilla->pintar();
+    echo $rejilla->pintar2();
 
     if ($result2<>"")       /* Incluir  en generador este if */
     {
@@ -78,7 +78,7 @@ if($result)
     }
     echo '<h2>Porcentajes anuales de enfermedades, clasificados por edad</h2>';
     $rejilla_total_edad=new rejilla_est_enfermedades($result_total_edad);
-    echo $rejilla_total_edad->pintar();
+    echo $rejilla_total_edad->pintar2();
 }
 else	/* Incluir en generador este else */
 {
