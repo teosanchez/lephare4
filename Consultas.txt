@@ -5,6 +5,7 @@ A ver que tal funciona
 MKodificado desde Manuel
 Modificado jueves 16 11:32
 Otro cambio
+12:09
 -----------------------------------------
 
 create view vw_edad_paciente_visita as 
