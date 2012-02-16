@@ -1,6 +1,6 @@
 <?php
 class rejilla_est_enfermedades
-    {
+{
     private $_datos; //array de datos a mostrar
     
     public function __construct($datos)
@@ -48,6 +48,35 @@ class rejilla_est_enfermedades
         $salida.="</tbody></table>";
         return $salida;
         }
+
         
-    }
+     public function pintar2()
+        {
+        $datos=$this->_datos;
+
+        $salida=$this->cabecera();
+
+        $salida.="<tbody>";
+
+        foreach($datos as $fila)
+            {
+            $salida.="<tr>";
+            foreach($fila as $indice=>$valor)
+                {
+                    if ($indice<>"Enfermedad" and $indice<>"Sexo") /* Incluir en generador */
+                    {                           /* Incluir en generador */
+                        $salida.="<td>".number_format($valor,2)."%</td>";
+                    }  
+                     else 
+                    {
+                         $salida.="<td>".$valor."</td>";
+                    }/* Incluir en generador */
+                }
+        $salida.="</tr>";
+            }
+        $salida.="</tbody></table>";
+        return $salida;
+        }
+       
+}
 ?>
