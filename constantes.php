@@ -2,5 +2,5 @@
     define ('SERVIDOR','localhost');
     define ('USUARIO','root');
     define ('PASSWORD','');
-    define ('BD','lephare2');
+    define ('BD','lephare4');
 ?>
