@@ -1,6 +1,6 @@
 <?php
     define ('SERVIDOR','localhost');
-    define ('USUARIO','lephare');
-    define ('PASSWORD','sevilla');
-    define ('BD','lephare2');
+    define ('USUARIO','root');
+    define ('PASSWORD','');
+    define ('BD','lephare4');
 ?>
