@@ -6,6 +6,8 @@ MKodificado desde Manuel
 
 jkfafaaaa
 
+17/02/2012 09:05
+
 -----------------------------------------
 
 create view vw_edad_paciente_visita as 
