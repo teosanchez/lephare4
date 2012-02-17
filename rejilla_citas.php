@@ -9,7 +9,7 @@ $fecha="";
 $result="";     
 $result2="";
 /*********** Paginacion ***************/
-$registros=2;
+$registros=REGISTROS_PAGINA;
 $inicio=0;
 if(isset($_GET['pagina']))
     {

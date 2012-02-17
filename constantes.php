@@ -2,6 +2,6 @@
     define ('SERVIDOR','localhost');
     define ('USUARIO','root');
     define ('PASSWORD','');
-    define ('BD','lephare3');
+    define ('BD','lephare4');
     define ('REGISTROS_PAGINA',10);
 ?>
