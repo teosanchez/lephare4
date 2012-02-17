@@ -1,6 +1,9 @@
 -- modificado a ver si va github
 **********
-
+-----------
+modificado por rafa
+17/02/2010
+-----------
 A ver que tal funciona
 MKodificado desde Manuel
 <<<<<<< HEAD
