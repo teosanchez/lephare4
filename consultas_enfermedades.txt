@@ -84,12 +84,17 @@ ORDER BY `Año`,Num_Mes,Enfermedad,Sexo;
 
 
 create view vw_total_consultas_por_edad as
+<<<<<<< HEAD
 select  `Año`, Num_Mes, Mes,
+=======
+select  `Año`, Num_Mes, Mes, Sexo,
+>>>>>>> 524a39d1d31180923aeb50f9f6afd7f6451b992b
         sum(0a1) as 0a1,
         sum(2a4) as 2a4,
         sum(5a14) as 5a14,
         sum(Resto) as Resto,
         sum(0a1)+sum(2a4)+sum(5a14)+sum(Resto) as Total
+<<<<<<< HEAD
 FROM vw_total_consultas_por_enfermedad_y_edad
 group by `Año`,Num_Mes
 ORDER BY `Año`,Num_Mes;
@@ -117,12 +122,27 @@ select  `Año`,
 FROM vw_total_consultas_por_edad
 group by `Año`
 ORDER BY `Año`;
+=======
+FROM vw_edad_paciente_nom_mes_visita_enfermedad
+ORDER BY `Año`,Num_Mes,Sexo;
+
+
+create view vw_porc_total_consultas_por_edad as
+select  `Año`,Num_Mes, Mes, Sexo,
+        (0a1*100)/Total as `%0a1`,
+        (2a4*100)/Total as `%2a4`,
+        (5a14*100)/Total as `%5a14`,
+        (Resto*100)/Total as `%Resto`
+FROM vw_total_consultas_por_edad
+ORDER BY `Año`,Num_Mes,Sexo;
+>>>>>>> 524a39d1d31180923aeb50f9f6afd7f6451b992b
 
 
 create view vw_lista_annos as
 select distinct Anno as `Año`    
 FROM vw_edad_paciente_num_mes_visita_enfermedad
 where Anno is not null and Anno <>'0'
+<<<<<<< HEAD
 order by Anno desc;
 
 
@@ -140,3 +160,6 @@ from vw_edad_paciente_visita
 group by id_paciente,`Año`,Mes
 
 
+=======
+order by Anno desc;
+>>>>>>> 524a39d1d31180923aeb50f9f6afd7f6451b992b
