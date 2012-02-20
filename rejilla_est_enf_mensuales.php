@@ -264,4 +264,3 @@ if(($pagina-1) > 0)
     ?>
    <input class="boton" type="submit" name="porc_anuales" value="Ver Porcentajes Anuales"/>
 </form>
-
