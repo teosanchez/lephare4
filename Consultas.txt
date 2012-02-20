@@ -1,12 +1,31 @@
+
+
+
+
+
+
 -- modificado a ver si va github
 **********
-
+-----------
+modificado por rafa
+17/02/2010
+-----------
 A ver que tal funciona
+MKodificado desde Manuel
+<<<<<<< HEAD
 
+jkfafaaaa
 
+17/02/2012 09:05
 
-
+=======
+Modificado jueves 16 11:32
+Otro cambio
+12:09
+>>>>>>> 826b6387b62216887e86d83cef3884120dcf5068
 -----------------------------------------
+Modificado desde el otrop ordenador
+16/2/2012 14:08
 
 create view vw_edad_paciente_visita as 
 SELECT pacientes.id AS paciente,

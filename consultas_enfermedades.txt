@@ -84,12 +84,45 @@ ORDER BY `Año`,Num_Mes,Enfermedad,Sexo;
 
 
 create view vw_total_consultas_por_edad as
+<<<<<<< HEAD
+select  `Año`, Num_Mes, Mes,
+=======
 select  `Año`, Num_Mes, Mes, Sexo,
+>>>>>>> 524a39d1d31180923aeb50f9f6afd7f6451b992b
         sum(0a1) as 0a1,
         sum(2a4) as 2a4,
         sum(5a14) as 5a14,
         sum(Resto) as Resto,
         sum(0a1)+sum(2a4)+sum(5a14)+sum(Resto) as Total
+<<<<<<< HEAD
+FROM vw_total_consultas_por_enfermedad_y_edad
+group by `Año`,Num_Mes
+ORDER BY `Año`,Num_Mes;
+
+
+create view vw_porc_total_consultas_por_edad_mensuales as
+select  `Año`,Num_Mes, Mes,
+        (0a1*100)/Total as `%0a1`,
+        (2a4*100)/Total as `%2a4`,
+        (5a14*100)/Total as `%5a14`,
+        (Resto*100)/Total as `%Resto`,
+        100 as Total
+FROM vw_total_consultas_por_edad
+group by `Año`,Num_Mes
+ORDER BY `Año`,Num_Mes;
+
+
+create view vw_porc_total_consultas_por_edad_anuales as
+select  `Año`,
+        (0a1*100)/Total as `%0a1`,
+        (2a4*100)/Total as `%2a4`,
+        (5a14*100)/Total as `%5a14`,
+        (Resto*100)/Total as `%Resto`,
+        100 as Total
+FROM vw_total_consultas_por_edad
+group by `Año`
+ORDER BY `Año`;
+=======
 FROM vw_edad_paciente_nom_mes_visita_enfermedad
 ORDER BY `Año`,Num_Mes,Sexo;
 
@@ -102,10 +135,31 @@ select  `Año`,Num_Mes, Mes, Sexo,
         (Resto*100)/Total as `%Resto`
 FROM vw_total_consultas_por_edad
 ORDER BY `Año`,Num_Mes,Sexo;
+>>>>>>> 524a39d1d31180923aeb50f9f6afd7f6451b992b
 
 
 create view vw_lista_annos as
 select distinct Anno as `Año`    
 FROM vw_edad_paciente_num_mes_visita_enfermedad
 where Anno is not null and Anno <>'0'
+<<<<<<< HEAD
 order by Anno desc;
+
+
+create view vw_num_visitas_pacientes_por_edad as
+select id_paciente,
+        year(fecha_visita) as anno as `Año`,
+        month(fecha_visita) as num_mes as Mes,
+        sexo as Sexo,
+        count(id_visita) as num_visitas,
+        sum(if(edad<=1, 1, 0)) as 0_1, 
+        sum(if(edad>1 and edad<=4, 1, 0)) as 2_4,
+        sum(if(edad>4 and edad<=14, 1, 0)) as 5_14,
+        sum(if(edad>14, 1, 0)) as Resto
+from vw_edad_paciente_visita
+group by id_paciente,`Año`,Mes
+
+
+=======
+order by Anno desc;
+>>>>>>> 524a39d1d31180923aeb50f9f6afd7f6451b992b

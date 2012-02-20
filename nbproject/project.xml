@@ -1,3 +1,14 @@
+<<<<<<< HEAD
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://www.netbeans.org/ns/project/1">
+    <type>org.netbeans.modules.php.project</type>
+    <configuration>
+        <data xmlns="http://www.netbeans.org/ns/php-project/1">
+            <name>LePhare4</name>
+        </data>
+    </configuration>
+</project>
+=======
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://www.netbeans.org/ns/project/1">
     <type>org.netbeans.modules.php.project</type>
@@ -7,3 +18,4 @@
         </data>
     </configuration>
 </project>
+>>>>>>> 524a39d1d31180923aeb50f9f6afd7f6451b992b

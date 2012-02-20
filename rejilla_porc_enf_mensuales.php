@@ -12,8 +12,13 @@ $meses=new meses();
 
 /*********** Cálculo de $anno y $mes  ***************/
 
+<<<<<<< HEAD
+$nom_meses=$bd->consultarArray("select nom_mes from t_meses");
+//var_dump($nom_meses);
+=======
 $nom_meses=array('ENERO','FEBRERO','MARZO','ABRIL','MAYO','JUNIO',
             'JULIO','AGOSTO','SEPTIEMBRE','OCTUBRE','NOVIEMBRE','DICIEMBRE');
+>>>>>>> 524a39d1d31180923aeb50f9f6afd7f6451b992b
 
 if (isset ($_GET["Años"]))
     {
@@ -31,6 +36,16 @@ else
     {
         $indice_mes=date("n")-1;
    }
+<<<<<<< HEAD
+$mes=$nom_meses[$indice_mes]['nom_mes']; 
+$id_mes=$indice_mes+1;
+/***********  Fin Cálculo de $anno y $mes  ***************/
+
+/*********** Establecer consulta ***************/
+$cadena="";
+$result="";
+$result2="";    /* Incluir en generador el cñlculo de $result2 */
+=======
 $mes=$nom_meses[$indice_mes]; // Cuando tenga valores la tabla, lo activaré y quitaré los otros
 $id_mes=$indice_mes+1;
 /***********  Fin Cálculo de $anno y $mes  ***************/
@@ -59,6 +74,7 @@ $total_paginas=ceil($total_registros / $registros);
 $cadena="";
 $result="";
 $result2="";    /* Incluir en generador el cálculo de $result2 */
+>>>>>>> 524a39d1d31180923aeb50f9f6afd7f6451b992b
 if(isset ($_GET["cadena"]) && $_GET["cadena"]<>"") //Evalua si existe esta variable y si viene con algun contenido, la cual procede del cuadro de texto que esta junto al boton Buscar de uno de los formularios
 {
     $cadena=$_GET["cadena"];
@@ -78,6 +94,16 @@ if(isset ($_GET["cadena"]) && $_GET["cadena"]<>"") //Evalua si existe esta varia
 else    
 {
     if(!isset ($_GET["cadena"]))
+<<<<<<< HEAD
+    {       
+        $result=$bd->consultarArray("SELECT Enfermedad,Sexo,`%0a1`,`%2a4`,`%5a14`,`%Resto`  
+                FROM vw_porc_total_consultas_por_enfermedad_y_edad
+                WHERE `Año`='".$anno."' and Mes='".$mes."'");
+        $result_total_edad=$bd->consultarArray("SELECT `%0a1`,`%2a4`,`%5a14`,`%Resto` 
+                FROM vw_porc_total_consultas_por_edad_mensuales
+                WHERE `Año`='".$anno."' and Mes='".$mes."'");
+     }
+=======
     {       /*paginacion */
         $result=$bd->consultarArray("SELECT Enfermedad,Sexo,`%0a1`,`%2a4`,`%5a14`,`%Resto`  
                 FROM vw_porc_total_consultas_por_enfermedad_y_edad
@@ -93,6 +119,7 @@ else
                 WHERE `Año`='".$anno."' and Mes='".$mes."'
                 LIMIT $inicio, $registros");*/
     }
+>>>>>>> 524a39d1d31180923aeb50f9f6afd7f6451b992b
 }
 
 /******************** Fin establecer consulta *****************/
@@ -103,7 +130,11 @@ echo '<h2>'.$mes." ".$anno.'</h2>';
 if($result)
 {
     $rejilla=new rejilla_est_enfermedades($result);
+<<<<<<< HEAD
+    echo $rejilla->pintar2();
+=======
     echo $rejilla->pintar();
+>>>>>>> 524a39d1d31180923aeb50f9f6afd7f6451b992b
 
     if ($result2<>"")       /* Incluir  en generador este if */
     {
@@ -117,10 +148,17 @@ if($result)
             echo '<p>Se han encontrado '.$num_registros.' registros.</p>';
         }
     }
+<<<<<<< HEAD
+    //var_dump($result_total_edad);
+    echo '<h2>Porcentajes mensuales de enfermedades, clasificados por edad</h2>';
+    $rejilla_total_edad=new rejilla_est_enfermedades($result_total_edad);
+    echo $rejilla_total_edad->pintar2();
+=======
     //$rejilla_total_edad=new rejilla_est_enfermedades($result_total_edad);
     //echo $rejilla_total_edad->pintar2();
     //$rejilla_total=new rejilla_est_enfermedades($result_total);
     //echo $rejilla_total->pintar3();
+>>>>>>> 524a39d1d31180923aeb50f9f6afd7f6451b992b
 }
 else	/* Incluir en generador este else */
 {
@@ -130,7 +168,11 @@ else	/* Incluir en generador este else */
     }
     else
     {
+<<<<<<< HEAD
+        echo '<p class="error">No se ha encontrado ningñn registro.</p>';
+=======
         echo '<p class="error">No se ha encontrado ningún registro.</p>';
+>>>>>>> 524a39d1d31180923aeb50f9f6afd7f6451b992b
     }
 }
 
@@ -144,6 +186,12 @@ if(isset ($_GET['msj2'])&& $_GET['msj2']!="")//Incluir en Generador
     echo '<p>'.$_GET['msj2'].'</p>';             //Incluir en Generador   
 } //Incluir en Generador 
 
+<<<<<<< HEAD
+?>
+
+<form action="index.php" method="get">
+    <input type="hidden" name="cuerpo" value="criterios_est_enf.php"/>
+=======
      /*********** Paginacion ***************/
 if(($pagina-1) > 0) 
        {
@@ -170,12 +218,18 @@ if(($pagina-1) > 0)
 
 <form action="index.php" method="get">
     <input type="hidden" name="cuerpo" value="rejilla_porc_enf_mensuales.php"/>
+>>>>>>> 524a39d1d31180923aeb50f9f6afd7f6451b992b
     <input type="text" name="cadena"/>
     <input class="boton" type="submit" name="buscar" value="Buscar"/>
 </form>
 </br>
 
 <form action="index.php" method="get">
+<<<<<<< HEAD
+    <input type="hidden" name="cuerpo" value="criterios_est_enf.php"/>
+    <input class="boton" type="submit" name="volver" value="Volver"/>
+</form>
+=======
     <input type="hidden" name="cuerpo" value="rejilla_est_enf_mensuales.php"/>
     Seleccione un Mes:
     <?php
@@ -224,3 +278,4 @@ if(($pagina-1) > 0)
     ?>
    <input class="boton" type="submit" name="porc_anuales" value="Ver Porcentajes Anuales"/>
 </form>
+>>>>>>> 524a39d1d31180923aeb50f9f6afd7f6451b992b
