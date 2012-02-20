@@ -1,10 +1,9 @@
 <?php
 class rejilla_est_enfermedades
-<<<<<<< HEAD
+
 {
-=======
-    {
->>>>>>> 524a39d1d31180923aeb50f9f6afd7f6451b992b
+
+  
     private $_datos; //array de datos a mostrar
     
     public function __construct($datos)
@@ -52,7 +51,7 @@ class rejilla_est_enfermedades
         $salida.="</tbody></table>";
         return $salida;
         }
-<<<<<<< HEAD
+
 
         
      public function pintar2()
@@ -83,8 +82,8 @@ class rejilla_est_enfermedades
         return $salida;
         }
        
-}
-=======
+
+
         
 private function cabecera2()
         {
@@ -128,5 +127,5 @@ private function cabecera2()
         return $salida;
         }
     }
->>>>>>> 524a39d1d31180923aeb50f9f6afd7f6451b992b
+
 ?>
