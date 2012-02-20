@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <?php
 include ("clase_rejilla_citas.php");
 include_once ("clase_bd.php");
@@ -282,5 +282,5 @@ if(($pagina-1) > 0)
 	<input type="hidden" name="cuerpo" value="rejilla_citas.php" />
 	<input type="text" name="cadena"/>
 	<input class="boton" type="submit" name="buscar_cadena" value="Buscar Dato"/>
->>>>>>> 524a39d1d31180923aeb50f9f6afd7f6451b992b
+
 </form>
